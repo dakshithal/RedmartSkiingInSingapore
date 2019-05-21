@@ -8,14 +8,15 @@ public class Main {
 	static int[][] map;
 	
 	public static void main(String[] args) {
+		System.out.println("Please enter input values : ");
+		
 		readInputs();
 		List<Integer> longestSkiiPath = findBestSkiiPath();
 		
 		int pathLength = longestSkiiPath.size();
 		int largestDrop = longestSkiiPath.get(0) - longestSkiiPath.get(pathLength - 1);
 		
-		System.out.println("lenght : " + pathLength + " drop : " + largestDrop);
-		
+		System.out.println("length : " + pathLength + " drop : " + largestDrop);
 		System.out.println("Done!");
 	}
 	
@@ -57,7 +58,7 @@ public class Main {
 			}		
 		}
 		
-		//getBestofBestPaths
+		//getBestofBestPath
 		return getBestPath(bestPaths);
 	}
 	
@@ -68,12 +69,13 @@ public class Main {
 				bestPath = currentPaths.get(i);
 			else if (bestPath.size() < currentPaths.get(i).size()) 
 				bestPath = currentPaths.get(i);
-			else {
+			else if (bestPath.size() == currentPaths.get(i).size()) {
 				int bestPathDepth = bestPath.get(0) - bestPath.get(bestPath.size() - 1);
 				int currentPathDepth = currentPaths.get(i).get(0) - currentPaths.get(i).get(currentPaths.get(i).size() - 1);
 				if (bestPathDepth < currentPathDepth)
 					bestPath = currentPaths.get(i);
 			}
+			//printPath(bestPath);
 		} 
 		return bestPath;
 	}
